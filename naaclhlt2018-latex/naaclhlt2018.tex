@@ -1,0 +1,166 @@
+%%
+% File naaclhlt2018.tex
+%
+%% Based on the style files for NAACL-HLT 2018, which were
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% based on ACL-2013, ACL-2012, ACL-2011, ACL-2010, ACL-IJCNLP-2009,
+%% EACL-2009, IJCNLP-2008...
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{naaclhlt2018}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{blindtext, graphicx}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{url}
+
+%\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\newcommand\BibTeX{B{\sc ib}\TeX}
+
+\title{Key2Vec: Automatic Ranked Keyword Extraction from Scientific Articles using Keyphrase Embeddings}
+
+\author{First Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  {\tt email@domain} \\\And
+  Second Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  {\tt email@domain} \\}
+
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Keyword extraction is a fundamental task in natural language processing that facilitates mapping of documents to a concise set of representative single and multi-word phrases. Keywords from text documents are primarily extracted using supervised and unsupervised approaches. In this paper, we present a novel and effective unsupervised technique named \textit{Key2Vec} that extensively takes into account neural keyphrase embeddings for extracting and ranking keywords from scientific articles. We introduce an efficient way of processing text documents and training keyphrase embeddings for the purpose of extracting and ranking keywords. We share a new evaluation dataset used for choosing the underlying model for \textit{Key2Vec}, which is based on semantic similarity of textual segments.  The evaluations for ranked keyword extraction are performed on two benchmark datasets comprising of short abstracts (Inspec), and long scientific papers (SemEval 2010), and is shown to produce results better than the state-of-the-art systems. We also show how keyphrase embeddings could be further used for capturing semantic similarity between text documents, and for performing efficient extractive summarization using the \textit{Key2Vec} framework.
+
+\end{abstract}
+
+\section{Introduction}
+Keywords are single or multi-word linguistic units that represent the salient aspects of a document. In this paper, we use the term
+keyword uniformly to represent both single and multi-word phrases. Keywords are useful in many tasks
+such as indexing documents \cite{gutwin1999improving}, summarization \cite{litvak2008graph}, clustering \cite{hammouda2005corephrase}, ontology creation \cite{gulla2007ontology}, classification \cite{hulth2006study}, auto-tagging \cite{wu2010automatic} and visualization of text \cite{collins2009parallel}. Due to its widespread use, keyword extraction has received a lot of attention from researchers.
+
+In order to push the state-of-the-art performances of keyword extraction systems, the research community has been hosting shared tasks like SemeEval 2010 Task 5 \cite{kim2010semeval} and SemEval 2017 Task 10 \cite{augenstein2017semeval}. However, the task is far from solved and the performances of the present systems are worse in comparison to many other NLP tasks \cite{liu2010automatic}. Some of the major challenges are the varied length of the documents to be processed, their structural inconsistency and developing strategies that can perform well in different domains \cite{hasan2014automatic}.
+
+The task of ranked keyword extraction from scientific articles and identifying relationships between them is of great interest to scientific publishers as it helps to recommend articles to readers, highlight
+missing citations to authors, identify potential reviewers for submissions, and analyse research trends over time \cite{augenstein2017semeval}. Although scientific articles usually provide them, most of the documents have no associated keywords. Therefore, the problem of automatically extracting the most representative keywords from scientific articles is an active field of research. 
+
+Methods for automatic keyword extraction are mainly divided into two categories: \textit{supervised} and \textit{unsupervised}. 
+Supervised methods approach the problem of keyword extraction as a binary classification problem \cite{hasan2014automatic}, whereas the unsupervised methods are mostly based on TFIDF, clustering, and graph-based ranking \cite{hasan2010conundrums}. On presence of domain-specific data, supervised methods have shown better performance than the unsupervised methods. The unsupervised methods have the advantage of not requiring any training data and can produce results in any domain. However, the assumptions of unsupervised methods do not hold for every type of document. 
+
+With recent advancements in deep learning techniques applied to natural language processing, the latest trend is to represent words as dense real-valued vectors obtained by training a shallow neural network on a fixed vocabulary. These distributional representation of words are popularly known as word embeddings. These neural representations have been shown to equal or outperform other methods (e.g. LSA, SVD) \cite{baroni2014don}. The vector representation of words, are supposed to preserve the semantic and syntactic similarities between them. They have been shown to be useful for several natural language processing (NLP) tasks, like part-of-speech tagging, chunking, named entity recognition, semantic role labeling, syntactic parsing, and also for speech processing \cite{collobert2011natural}. Some of the most popular approaches for generating word embeddings are Word2Vec \cite{mikolov2013distributed}, Glove \cite{pennington2014glove} and Fasttext \cite{bojanowski2016enriching}.
+
+%These procedures for generating word and text embeddings have been popularized in the form of toolkits that are easy to use with various programming languages and can be trained on huge corpus using distributed processing environments. The main benefit of these embedding methods is that they can be trained in an unsupervised way, without any need for expensive annotation and are derived from large unannotated corpora.  The trained models can then be deployed in a variety of applications. In this paper, we have used Word2Vec, Fasttext and Doc2Vec approaches for generating word and document embeddings for the purpose of content based recommendations. We give a brief overview of each of them.
+%
+%
+%In this paper we introduce a new approach that knits together techniques from supervised and unsupervised paradigms in the form of a robust framework, which leverages distributed representation of keywords in order to produce state-of-the-art results in keyword extraction from text documents. Due to extensive use of keyword embeddings trained using Word2Vec \cite{mikolov2013distributed} and its effectiveness, we name our framework as \textit{Key2Vec}. Table ~\ref{sample-result}, shows sample keywords automatically extracted by \textit{Key2Vec} from a research article abstract in the Inspec corpus. The main contributions of our work towards ranked keyword extraction are:
+%\begin{itemize}
+%  \item Effective application of distributed representation of keywords in the form of \textit{keyword embeddings}.
+%  \item Introduction of new \textit{heuristics for identification of candidate keywords} by leveraging \textit{keyword embeddings}.
+%  \item \textit{Use of keyword embeddings for generating features useful for supervised scoring} and \textit{unsupervised ranking} of candidate keywords.
+%  \item \textit{Hybrid approach} taking advantages of supervised and unsupervised techniques for developing a robust methodology.
+%  \item A \textit{generic framework} (\textit{Key2Vec}) for extracting and ranking keywords from text documents related to any domain.
+%\end{itemize}
+
+
+In this paper, we introduce the notion of \textit{keyphrase embeddings}, and show how they could be trained in a simple and effective way using already existing algorithms belonging to the neural word embedding family (Word2Vec and Fasttext). Instead of distributional representation of words we produce distributional representation of keyphrases for the purpose of ranked keyword extraction from scientific articles. We call our methodology as \textit{Key2Vec}. We also propose a text processing pipeline for training keyphrase embeddings, which enables intelligent tokenization of text into a mix of unigram and meaningful chunks of multi-gram tokens. We show how the embedding models trained using our strategy, can be advantageously used for representing keyphrases and text snippets as dense vectors that are further used for calculating semantic and syntactic similarities. We fully rely on training high quality embedding models and effectively use the similarities between the distributional representation of keyphrases for ranking representative keywords from scientific documents. Table \ref{sample-result}, shows keywords extracted from a sample research article abstract, by using \textit{Key2Vec}.  
+
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{\small Keywords extracted by using \textit{Key2Vec} from a sample research article abstract.}
+\tabcolsep=0.10cm
+\scalebox{1.0}{
+\begin{tabular}{l}
+\begin{tabular}[c]{@{}l@{}}\textbf{Title:} Identification of states of complex systems with\\ estimation of admissible measurement errors on the basis of \\ fuzzy information.\\ \textbf{Abstract:} The problem of identification of states of complex \\ systems on the basis of fuzzy values of informative attributes \\ is considered. Some estimates of a maximally admissible \\ degree of measurement error are obtained that make it possible, \\ using the apparatus of fuzzy set theory, to correctly identify \\ the current state of a system.\\  \textbf{Automatically identified keywords:} \textit{complex systems, fuzzy} \\ \textit{information, admissible measurement errors, fuzzy values}\\ \textit{informative attributes, measurement error, maximally admissible} \\ \textit{degree, fuzzy set theory}\\ \textbf{Manually assigned keywords:} \textit{complex system state} \\ \textit{identification, admissible measurement errors, informative} \\ \textit{attributes, measurement errors, fuzzy set theory}\end{tabular}
+\end{tabular}}
+\label{sample-result}
+\end{table}
+
+
+For the purpose of evaluating our embedding models on different similarity tasks, we develop a new evaluation dataset\footnote{www.example.com} (Section \ref{embedding-model-selection}), from an exisiting dataset \cite{dai2015document}. We share the dataset with the community believing that it would facilitate training of better keyphrase embedding models useful for ranked keyword extraction. Contrary, to the analogy task that is widely used for intrinsic evaluation of word embeddings, this dataset can be used for evaluating phrase and word embeddings on similarity tasks, whenever they are being trained for a downstream process that has semantic and syntactic similarity between distributional representation of text at its core. We perform such an evaluation and show that our keyphrase embeddings are more effective in capturing semantic similarity between text documents at lower dimensions, than normal word embeddings, when trained using the same parameters (Section \ref{discussion}).
+
+%\textit{Given a text document $D_{i}$, and a set of candidate phrases $C_{i} = \{ c_{1},c_{2},...c_{n}\}$, extracted from $D_{i}$, the task is to find a ranked set of keywords $K_{i} = \{ k_{1},k_{2},...k_{k}\}$, $K_{i}\subseteq C_{i}$, such that $K_{i}$ contains the candidate phrases from $C_{i}$, that represents the main topics covered in the document $D_{i}$.}
+
+We not only aim at extracting the keywords that are statistically relevant for the given document, as mostly attempted by previous studies \cite{hasan2014automatic}, but also to rightly identify meaningful keyphrases that are most semantically related to the main theme of the document. We are motivated by the following properties for the top-K keywords that we select using \textit{Key2Vec} as mentioned in \cite{liu2009clustering}.
+
+\begin{itemize}
+\item \textit{Understandability} - The ranked keywords should be understandable to readers, which is made possible by chosing grammatically correct and meaningful phrases that possess the characteristic of high readability by humans. For example, the phrase \textit{scientific articles} has more understandability than the individual words \textit{scientific} and \textit{articles}.  
+\item \textit{Relevancy} - The top-K keywords should be semantically related to the central theme of the document.
+\item \textit{Good Coverage} - The keywords should cover all the major topics discussed in the document.
+\end{itemize}
+
+This intrigued us to look at the route of training keyphrase embeddings as presented in this paper, rather than first training embedding models for unigram words and then combining their dense vector representations to obtain similar representations for multi-word phrases. Training keyphrase embeddings for extracting and ranking keywords is relatively a new problem and has not been thoroughly explored. Researchers have just started exploring the advantages of neural word embeddings for representing semantic similarities between words that are further leveraged in graph-based ranking algorithms, in order to rank extracted keywords \cite{wang2015using}. To our knowledge, keyphrase embeddings have not been used for ranked keyword extraction and summarization, and this work is the first attempt to do so. 
+
+
+Some of the major contributions of this paper are,
+\begin{itemize}
+  \item \textit{Intelligent processing of text for training neural keyphrase embeddings}.
+  \item Effective \textit{application of keyphrase embeddings for extraction and ranking of keywords}, producing state-of-the-art results.
+  %\item Introduction of new \textit{heuristics for identification of candidate keywords} by leveraging \textit{phrase embeddings}.
+  \item \textit{A dataset for evaluating the quality of embedding models}, trained for the purpose of capturing semantic similarities between different types of textual units.
+  \item A new \textit{generic framework} (\textit{Key2Vec}), based on distributional semantics, for \textit{ranked keyword extraction}, and \textit{summarization}.
+\end{itemize}
+
+The rest of the paper is organized as follows. In Section \ref{related_work}, we discuss about the background literature and works relevant to ours. We fully describe our methodology in Section \ref{methodology}, and present our empirical experiment results in Section \ref{experiments}. We discuss our learnings and applications of our framework in Section \ref{discussion}, followed by our conclusion and plans for future work in Section \ref{conclusion}
+
+
+
+% include your own bib file like this:
+%\bibliographystyle{acl}
+%\bibliography{naaclhlt2018}
+\bibliography{cikm}
+\bibliographystyle{acl_natbib}
+
+\appendix
+
+\section{Supplemental Material}
+\label{sec:supplemental}
+Submissions may include resources (software and/or data) used in in the work and described in the paper. Papers that are submitted with accompanying software and/or data may receive additional credit toward the overall evaluation score, and the potential impact of the software and data will be taken into account when making the acceptance/rejection decisions. Any accompanying software and/or data should include licenses and documentation of research review as appropriate.
+
+
+NAACL-HLT 2018 also encourages the submission of supplementary material to report preprocessing decisions, model parameters, and other details necessary for the replication of the experiments reported in the paper. Seemingly small preprocessing decisions can sometimes make a large difference in performance, so it is crucial to record such decisions to precisely characterize state-of-the-art methods. 
+
+Nonetheless, supplementary material should be supplementary (rather
+than central) to the paper. {\bf Submissions that misuse the supplementary 
+material may be rejected without review.}
+Essentially, supplementary material may include explanations or details
+of proofs or derivations that do not fit into the paper, lists of
+features or feature templates, sample inputs and outputs for a system,
+pseudo-code or source code, and data. (Source code and data should
+be separate uploads, rather than part of the paper).
+
+The paper should not rely on the supplementary material: while the paper
+may refer to and cite the supplementary material and the supplementary material will be available to the
+reviewers, they will not be asked to review the
+supplementary material.
+
+
+Appendices ({\em i.e.} supplementary material in the form of proofs, tables,
+or pseudo-code) should come after the references, as shown here. Use
+\verb|\appendix| before any appendix section to switch the section
+numbering over to letters.
+
+\section{Multiple Appendices}
+\dots can be gotten by using more than one section. We hope you won't
+need that.
+
+\end{document}

@@ -1,0 +1,141 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Augenstein et~al.(2017)Augenstein, Das, Riedel, Vikraman, and
+  McCallum}]{augenstein2017semeval}
+Isabelle Augenstein, Mrinal Das, Sebastian Riedel, Lakshmi Vikraman, and Andrew
+  McCallum. 2017.
+\newblock Semeval 2017 task 10: Scienceie-extracting keyphrases and relations
+  from scientific publications.
+\newblock {\em arXiv preprint arXiv:1704.02853\/} .
+
+\bibitem[{Baroni et~al.(2014)Baroni, Dinu, and Kruszewski}]{baroni2014don}
+Marco Baroni, Georgiana Dinu, and Germ{\'a}n Kruszewski. 2014.
+\newblock Don't count, predict! a systematic comparison of context-counting vs.
+  context-predicting semantic vectors.
+\newblock In {\em ACL (1)\/}. pages 238--247.
+
+\bibitem[{Bojanowski et~al.(2016)Bojanowski, Grave, Joulin, and
+  Mikolov}]{bojanowski2016enriching}
+Piotr Bojanowski, Edouard Grave, Armand Joulin, and Tomas Mikolov. 2016.
+\newblock Enriching word vectors with subword information.
+\newblock {\em arXiv preprint arXiv:1607.04606\/} .
+
+\bibitem[{Collins et~al.(2009)Collins, Viegas, and
+  Wattenberg}]{collins2009parallel}
+Christopher Collins, Fernanda~B Viegas, and Martin Wattenberg. 2009.
+\newblock Parallel tag clouds to explore and analyze faceted text corpora.
+\newblock In {\em Visual Analytics Science and Technology, 2009. VAST 2009.
+  IEEE Symposium on\/}. IEEE, pages 91--98.
+
+\bibitem[{Collobert et~al.(2011)Collobert, Weston, Bottou, Karlen, Kavukcuoglu,
+  and Kuksa}]{collobert2011natural}
+Ronan Collobert, Jason Weston, L{\'e}on Bottou, Michael Karlen, Koray
+  Kavukcuoglu, and Pavel Kuksa. 2011.
+\newblock Natural language processing (almost) from scratch.
+\newblock {\em Journal of Machine Learning Research\/} 12(Aug):2493--2537.
+
+\bibitem[{Dai et~al.(2015)Dai, Olah, and Le}]{dai2015document}
+Andrew~M Dai, Christopher Olah, and Quoc~V Le. 2015.
+\newblock Document embedding with paragraph vectors.
+\newblock {\em arXiv preprint arXiv:1507.07998\/} .
+
+\bibitem[{Gulla et~al.(2007)Gulla, Borch, and Ingvaldsen}]{gulla2007ontology}
+Jon Gulla, Hans Borch, and Jon Ingvaldsen. 2007.
+\newblock Ontology learning for search applications.
+\newblock {\em On the Move to Meaningful Internet Systems 2007: CoopIS, DOA,
+  ODBASE, GADA, and IS\/} pages 1050--1062.
+
+\bibitem[{Gutwin et~al.(1999)Gutwin, Paynter, Witten, Nevill-Manning, and
+  Frank}]{gutwin1999improving}
+Carl Gutwin, Gordon Paynter, Ian Witten, Craig Nevill-Manning, and Eibe Frank.
+  1999.
+\newblock Improving browsing in digital libraries with keyphrase indexes.
+\newblock {\em Decision Support Systems\/} 27(1):81--104.
+
+\bibitem[{Hammouda et~al.(2005)Hammouda, Matute, and
+  Kamel}]{hammouda2005corephrase}
+Khaled~M Hammouda, Diego~N Matute, and Mohamed~S Kamel. 2005.
+\newblock Corephrase: Keyphrase extraction for document clustering.
+\newblock In {\em International Workshop on Machine Learning and Data Mining in
+  Pattern Recognition\/}. Springer, pages 265--274.
+
+\bibitem[{Hasan and Ng(2010)}]{hasan2010conundrums}
+Kazi~Saidul Hasan and Vincent Ng. 2010.
+\newblock Conundrums in unsupervised keyphrase extraction: making sense of the
+  state-of-the-art.
+\newblock In {\em Proceedings of the 23rd International Conference on
+  Computational Linguistics: Posters\/}. Association for Computational
+  Linguistics, pages 365--373.
+
+\bibitem[{Hasan and Ng(2014)}]{hasan2014automatic}
+Kazi~Saidul Hasan and Vincent Ng. 2014.
+\newblock Automatic keyphrase extraction: A survey of the state of the art.
+\newblock In {\em ACL (1)\/}. pages 1262--1273.
+
+\bibitem[{Hulth and Megyesi(2006)}]{hulth2006study}
+Anette Hulth and Be{\'a}ta~B Megyesi. 2006.
+\newblock A study on automatically extracted keywords in text categorization.
+\newblock In {\em Proceedings of the 21st International Conference on
+  Computational Linguistics and the 44th annual meeting of the Association for
+  Computational Linguistics\/}. Association for Computational Linguistics,
+  pages 537--544.
+
+\bibitem[{Kim et~al.(2010)Kim, Medelyan, Kan, and Baldwin}]{kim2010semeval}
+Su~Nam Kim, Olena Medelyan, Min-Yen Kan, and Timothy Baldwin. 2010.
+\newblock Semeval-2010 task 5: Automatic keyphrase extraction from scientific
+  articles.
+\newblock In {\em Proceedings of the 5th International Workshop on Semantic
+  Evaluation\/}. Association for Computational Linguistics, pages 21--26.
+
+\bibitem[{Litvak and Last(2008)}]{litvak2008graph}
+Marina Litvak and Mark Last. 2008.
+\newblock Graph-based keyword extraction for single-document summarization.
+\newblock In {\em Proceedings of the workshop on Multi-source Multilingual
+  Information Extraction and Summarization\/}. Association for Computational
+  Linguistics, pages 17--24.
+
+\bibitem[{Liu et~al.(2010)Liu, Huang, Zheng, and Sun}]{liu2010automatic}
+Zhiyuan Liu, Wenyi Huang, Yabin Zheng, and Maosong Sun. 2010.
+\newblock Automatic keyphrase extraction via topic decomposition.
+\newblock In {\em Proceedings of the 2010 conference on empirical methods in
+  natural language processing\/}. Association for Computational Linguistics,
+  pages 366--376.
+
+\bibitem[{Liu et~al.(2009)Liu, Li, Zheng, and Sun}]{liu2009clustering}
+Zhiyuan Liu, Peng Li, Yabin Zheng, and Maosong Sun. 2009.
+\newblock Clustering to find exemplar terms for keyphrase extraction.
+\newblock In {\em Proceedings of the 2009 Conference on Empirical Methods in
+  Natural Language Processing: Volume 1-Volume 1\/}. Association for
+  Computational Linguistics, pages 257--266.
+
+\bibitem[{Mikolov et~al.(2013)Mikolov, Sutskever, Chen, Corrado, and
+  Dean}]{mikolov2013distributed}
+Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean. 2013.
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock In {\em Advances in neural information processing systems\/}. pages
+  3111--3119.
+
+\bibitem[{Pennington et~al.(2014)Pennington, Socher, and
+  Manning}]{pennington2014glove}
+Jeffrey Pennington, Richard Socher, and Christopher~D Manning. 2014.
+\newblock Glove: Global vectors for word representation.
+\newblock In {\em EMNLP\/}. volume~14, pages 1532--1543.
+
+\bibitem[{Wang et~al.(2015)Wang, Liu, and McDonald}]{wang2015using}
+Rui Wang, Wei Liu, and Chris McDonald. 2015.
+\newblock Using word embeddings to enhance keyword identification for
+  scientific publications.
+\newblock In {\em Australasian Database Conference\/}. Springer, pages
+  257--268.
+
+\bibitem[{Wu et~al.(2010)Wu, Zhang, and Ostendorf}]{wu2010automatic}
+Wei Wu, Bin Zhang, and Mari Ostendorf. 2010.
+\newblock Automatic generation of personalized annotation tags for twitter
+  users.
+\newblock In {\em Human language technologies: The 2010 annual conference of
+  the North American chapter of the association for computational
+  linguistics\/}. Association for Computational Linguistics, pages 689--692.
+
+\end{thebibliography}
